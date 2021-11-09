@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-        
+
         <script type="text/javascript">
             $(document).ready(function () {
                 $.ajax({
@@ -101,7 +101,7 @@
 
                 $("#provinsi").change(function () {
                     var provinsi = $("#provinsi").val();
-                    console.log(provinsi);
+                    // console.log(provinsi);
                     $.ajax({
                         type: "GET",
                         url: `https://raassh-23.github.io/api-wilayah-indonesia/api/regencies/${provinsi}.json`,
