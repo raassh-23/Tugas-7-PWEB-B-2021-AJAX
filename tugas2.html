@@ -88,6 +88,10 @@
                     // crossDomain: true,
                     cache: false,
                     success: function (msg) {
+                        $("#kabupaten").empty();
+                        $("#kecamatan").empty();
+                        $("#kelurahan").empty();
+
                         $.each(msg, function (i, item) {
                             $("#provinsi").append(
                                 $("<option>", {
@@ -101,13 +105,16 @@
 
                 $("#provinsi").change(function () {
                     var provinsi = $("#provinsi").val();
-                    // console.log(provinsi);
+
                     $.ajax({
                         type: "GET",
                         url: `https://raassh-23.github.io/api-wilayah-indonesia/api/regencies/${provinsi}.json`,
                         // crossDomain: true,
                         cache: false,
                         success: function (msg) {
+                            $("#kecamatan").empty();
+                            $("#kelurahan").empty();
+
                             $("#kabupaten")
                                 .empty()
                                 .append(
@@ -116,6 +123,7 @@
                                         text: "Pilih Kabupaten",
                                     })
                                 );
+
                             $.each(msg, function (i, item) {
                                 $("#kabupaten").append(
                                     $("<option>", {
@@ -130,12 +138,15 @@
 
                 $("#kabupaten").change(function () {
                     var kabupaten = $("#kabupaten").val();
+
                     $.ajax({
                         type: "GET",
                         url: `https://raassh-23.github.io/api-wilayah-indonesia/api/districts/${kabupaten}.json`,
                         // crossDomain: true,
                         cache: false,
                         success: function (msg) {
+                            $("#kelurahan").empty();
+
                             $("#kecamatan")
                                 .empty()
                                 .append(
@@ -159,6 +170,7 @@
 
                 $("#kecamatan").change(function () {
                     var kecamatan = $("#kecamatan").val();
+                    
                     $.ajax({
                         type: "GET",
                         url: `https://raassh-23.github.io/api-wilayah-indonesia/api/villages/${kecamatan}.json`,
